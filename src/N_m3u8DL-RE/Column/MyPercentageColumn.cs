@@ -1,4 +1,5 @@
 ﻿using Spectre.Console.Rendering;
+using N_m3u8DL_RE.Common.Log;
 using Spectre.Console;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,7 @@ namespace N_m3u8DL_RE.Column
         {
             var percentage = task.Percentage;
             var style = percentage == 100 ? CompletedStyle : Style ?? Style.Plain;
+            Logger.Info($"{task.Value}/{task.MaxValue} {percentage:F2}%", style);
             return new Text($"{task.Value}/{task.MaxValue} {percentage:F2}%", style).RightJustified();
         }
     }

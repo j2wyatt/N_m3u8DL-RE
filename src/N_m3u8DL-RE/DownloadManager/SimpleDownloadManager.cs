@@ -137,6 +137,10 @@ namespace N_m3u8DL_RE.DownloadManager
             //开始下载
             Logger.InfoMarkUp(ResString.startDownloading + streamSpec.ToShortString());
 
+            Logger.Info("hello world");
+
+            
+
             //对于CENC，全部自动开启二进制合并
             if (!DownloaderConfig.MyOptions.BinaryMerge && totalCount >= 1 && streamSpec.Playlist!.MediaParts.First().MediaSegments.First().EncryptInfo.Method == Common.Enum.EncryptMethod.CENC)
             {
@@ -274,7 +278,9 @@ namespace N_m3u8DL_RE.DownloadManager
                 var result = await Downloader.DownloadSegmentAsync(seg, path, speedContainer, headers);
                 FileDic[seg] = result;
                 if (result != null && result.Success)
+                {
                     task.Increment(1);
+                }
                 //实时解密
                 if (DownloaderConfig.MyOptions.MP4RealTimeDecryption && result != null && result.Success && !string.IsNullOrEmpty(currentKID)) 
                 {
@@ -659,6 +665,7 @@ namespace N_m3u8DL_RE.DownloadManager
                     {
                         var task = kp.Value;
                         var result = await DownloadStreamAsync(kp.Key, task, SpeedContainerDic[task.Id]);
+                        Logger.Info("pwf");
                         Results[kp.Key] = result;
                         //失败不再下载后续
                         if (!result) break;

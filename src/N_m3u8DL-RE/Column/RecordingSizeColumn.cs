@@ -1,6 +1,7 @@
 ﻿using N_m3u8DL_RE.Common.Util;
 using N_m3u8DL_RE.Entity;
 using Spectre.Console;
+using N_m3u8DL_RE.Common.Log;
 using Spectre.Console.Rendering;
 using System;
 using System.Collections.Concurrent;
@@ -33,6 +34,7 @@ namespace N_m3u8DL_RE.Column
             }
             DateTimeStringDic[taskId] = now;
             var flag = RecodingSizeDic.TryGetValue(taskId, out var size);
+            Logger.Info(GlobalUtil.FormatFileSize(flag ? size : 0));
             return new Text(GlobalUtil.FormatFileSize(flag ? size : 0), MyStyle).LeftJustified();
         }
     }

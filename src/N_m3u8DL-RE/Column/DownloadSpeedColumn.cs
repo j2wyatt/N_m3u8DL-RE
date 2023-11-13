@@ -45,6 +45,7 @@ namespace N_m3u8DL_RE.Column
                 if (speedContainer.Downloaded <= _stopSpeed) { speedContainer.AddLowSpeedCount(); }
                 else speedContainer.ResetLowSpeedCount();
                 speedContainer.Reset();
+                Logger.Info(FormatFileSize(speedContainer.NowSpeed) + (speedContainer.LowSpeedCount > 0 ? $"({speedContainer.LowSpeedCount})" : ""));
             }
             DateTimeStringDic[taskId] = now;
             var style = flag ? Style.Plain : MyStyle;

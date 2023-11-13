@@ -1,22 +1,9 @@
 name: Build Latest
 
 on:
+  push:
+    branches: [ master ]
   workflow_dispatch:
-    inputs:
-      doRelease:
-        description: 'Publish new release'
-        type: boolean
-        default: false
-        required: false
-      tag:
-        type: string
-        description: 'Release version tag (e.g. v1.2.3)'
-        required: true
-      ref:
-        type: string
-        description: 'Git ref from which to release'
-        required: true
-        default: 'main'
 
 env:
   DOTNET_SDK_VERSION: "8.0.*"

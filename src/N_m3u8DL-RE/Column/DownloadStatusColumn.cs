@@ -1,6 +1,7 @@
 ﻿using N_m3u8DL_RE.Common.Util;
 using N_m3u8DL_RE.Entity;
 using Spectre.Console;
+using N_m3u8DL_RE.Common.Log;
 using Spectre.Console.Rendering;
 using System;
 using System.Collections.Concurrent;
@@ -36,6 +37,11 @@ namespace N_m3u8DL_RE.Column
             if (DateTimeStringDic.TryGetValue(task.Id, out var oldTime) && oldTime != now)
             {
                 var totalSize = speedContainer.SingleSegment ? (speedContainer.ResponseLength ?? 0) : (long)(size / (task.Value / task.MaxValue));
+
+                // todo 我的修改
+
+                Logger.Info($"{GlobalUtil.FormatFileSize(size)}/{GlobalUtil.FormatFileSize(totalSize)}");
+
                 SizeDic[task.Id] = $"{GlobalUtil.FormatFileSize(size)}/{GlobalUtil.FormatFileSize(totalSize)}";
             }
             DateTimeStringDic[task.Id] = now;

@@ -2,6 +2,7 @@
 using Spectre.Console;
 using Spectre.Console.Rendering;
 using System;
+using N_m3u8DL_RE.Common.Log;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,9 +30,13 @@ namespace N_m3u8DL_RE.Column
         public override IRenderable Render(RenderOptions options, ProgressTask task, TimeSpan deltaTime)
         {
             if (_refreshedDurDic == null)
+            {
+                Logger.Info($"{GlobalUtil.FormatTime(_recodingDurDic[task.Id])}");
                 return new Text($"{GlobalUtil.FormatTime(_recodingDurDic[task.Id])}", MyStyle).LeftJustified();
+            }
             else
             {                
+                Logger.Info($"{GlobalUtil.FormatTime(_recodingDurDic[task.Id])}/{GlobalUtil.FormatTime(_refreshedDurDic[task.Id])}");
                 return new Text($"{GlobalUtil.FormatTime(_recodingDurDic[task.Id])}/{GlobalUtil.FormatTime(_refreshedDurDic[task.Id])}", GreyStyle);
             }
         }
