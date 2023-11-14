@@ -24,8 +24,8 @@ namespace N_m3u8DL_RE.DownloadManager
         List<StreamSpec> SelectedSteams;
         List<OutputFile> OutputFiles = new();
 
-        public SimpleDownloadManager(DownloaderConfig downloaderConfig, List<StreamSpec> selectedSteams, StreamExtractor streamExtractor) 
-        { 
+        public SimpleDownloadManager(DownloaderConfig downloaderConfig, List<StreamSpec> selectedSteams, StreamExtractor streamExtractor)
+        {
             this.DownloaderConfig = downloaderConfig;
             this.SelectedSteams = selectedSteams;
             this.StreamExtractor = streamExtractor;
@@ -137,10 +137,6 @@ namespace N_m3u8DL_RE.DownloadManager
             //开始下载
             Logger.InfoMarkUp(ResString.startDownloading + streamSpec.ToShortString());
 
-            Logger.Info("hello world");
-
-            
-
             //对于CENC，全部自动开启二进制合并
             if (!DownloaderConfig.MyOptions.BinaryMerge && totalCount >= 1 && streamSpec.Playlist!.MediaParts.First().MediaSegments.First().EncryptInfo.Method == Common.Enum.EncryptMethod.CENC)
             {
@@ -169,7 +165,7 @@ namespace N_m3u8DL_RE.DownloadManager
                 task.Increment(1);
 
                 //读取mp4信息
-                if (result != null && result.Success) 
+                if (result != null && result.Success)
                 {
                     currentKID = MP4DecryptUtil.ReadInit(result.ActualFilePath);
                     //从文件读取KEY
@@ -278,11 +274,9 @@ namespace N_m3u8DL_RE.DownloadManager
                 var result = await Downloader.DownloadSegmentAsync(seg, path, speedContainer, headers);
                 FileDic[seg] = result;
                 if (result != null && result.Success)
-                {
                     task.Increment(1);
-                }
                 //实时解密
-                if (DownloaderConfig.MyOptions.MP4RealTimeDecryption && result != null && result.Success && !string.IsNullOrEmpty(currentKID)) 
+                if (DownloaderConfig.MyOptions.MP4RealTimeDecryption && result != null && result.Success && !string.IsNullOrEmpty(currentKID))
                 {
                     var enc = result.ActualFilePath;
                     var dec = Path.Combine(Path.GetDirectoryName(enc)!, Path.GetFileNameWithoutExtension(enc) + "_dec" + Path.GetExtension(enc));
@@ -339,14 +333,14 @@ namespace N_m3u8DL_RE.DownloadManager
             }
 
             //校验完整性
-            if (DownloaderConfig.CheckContentLength && FileDic.Values.Any(a => a!.Success == false)) 
+            if (DownloaderConfig.CheckContentLength && FileDic.Values.Any(a => a!.Success == false))
             {
                 return false;
             }
 
             //自动修复VTT raw字幕
-            if (DownloaderConfig.MyOptions.AutoSubtitleFix && streamSpec.MediaType == Common.Enum.MediaType.SUBTITLES 
-                && streamSpec.Extension != null && streamSpec.Extension.Contains("vtt")) 
+            if (DownloaderConfig.MyOptions.AutoSubtitleFix && streamSpec.MediaType == Common.Enum.MediaType.SUBTITLES
+                && streamSpec.Extension != null && streamSpec.Extension.Contains("vtt"))
             {
                 Logger.WarnMarkUp(ResString.fixingVTT);
                 //排序字幕并修正时间戳
@@ -475,7 +469,7 @@ namespace N_m3u8DL_RE.DownloadManager
             //自动修复TTML mp4字幕
             if (DownloaderConfig.MyOptions.AutoSubtitleFix && streamSpec.MediaType == Common.Enum.MediaType.SUBTITLES
                 && streamSpec.Extension != null && streamSpec.Extension.Contains("m4s")
-                && streamSpec.Codecs != null && streamSpec.Codecs.Contains("stpp")) 
+                && streamSpec.Codecs != null && streamSpec.Codecs.Contains("stpp"))
             {
                 Logger.WarnMarkUp(ResString.fixingTTMLmp4);
                 //sawTtml暂时不判断
@@ -665,7 +659,6 @@ namespace N_m3u8DL_RE.DownloadManager
                     {
                         var task = kp.Value;
                         var result = await DownloadStreamAsync(kp.Key, task, SpeedContainerDic[task.Id]);
-                        Logger.Info("pwf");
                         Results[kp.Key] = result;
                         //失败不再下载后续
                         if (!result) break;
@@ -697,7 +690,7 @@ namespace N_m3u8DL_RE.DownloadManager
             }
 
             //混流
-            if (success && DownloaderConfig.MyOptions.MuxAfterDone && OutputFiles.Count > 0) 
+            if (success && DownloaderConfig.MyOptions.MuxAfterDone && OutputFiles.Count > 0)
             {
                 OutputFiles = OutputFiles.OrderBy(o => o.Index).ToList();
                 //是否跳过字幕
