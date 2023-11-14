@@ -10,6 +10,7 @@ using N_m3u8DL_RE.Entity;
 using N_m3u8DL_RE.Parser;
 using N_m3u8DL_RE.Parser.Mp4;
 using N_m3u8DL_RE.Util;
+using N_m3u8DL_RE.Common.Util;
 using Spectre.Console;
 using System.Collections.Concurrent;
 using System.Text;
@@ -267,12 +268,14 @@ namespace N_m3u8DL_RE.DownloadManager
             {
                 MaxDegreeOfParallelism = DownloaderConfig.MyOptions.ThreadCount
             };
+
             await Parallel.ForEachAsync(segments, options, async (seg, _) =>
             {
                 var index = seg.Index;
                 var path = Path.Combine(tmpDir, index.ToString(pad) + $".{streamSpec.Extension ?? "clip"}.tmp");
                 var result = await Downloader.DownloadSegmentAsync(seg, path, speedContainer, headers);
                 FileDic[seg] = result;
+
                 if (result != null && result.Success)
                     task.Increment(1);
                 //实时解密
@@ -287,6 +290,26 @@ namespace N_m3u8DL_RE.DownloadManager
                         result.ActualFilePath = dec;
                     }
                 }
+
+                // ===============   需要的参数  ===================
+                // ======== 分片完成和总数量 ========
+                var ssg = $"{task.Value}/{task.MaxValue}";
+                // ========= 任务进度百分比 =========
+                var stp = $"{task.Percentage:F2}%";
+                // ========= 任务完成和总大小 =======
+                // Logger.Info("test status");
+                var ttSize = speedContainer.SingleSegment ? (speedContainer.ResponseLength ?? 0) : (long)(speedContainer.RDownloaded / (task.Value / task.MaxValue));
+                var sst = $"{GlobalUtil.FormatFileSize(speedContainer.RDownloaded)}/{GlobalUtil.FormatFileSize(ttSize)}";
+                // ====== 每秒的下载速度 ==========
+                var flag = task.IsFinished || !task.IsStarted;
+                var ssp = flag ? "-" : DownloadSpeedColumn.FormatFileSz(speedContainer.NowSpeed) + (speedContainer.LowSpeedCount > 0 ? $"({speedContainer.LowSpeedCount})" : "");
+                // 任务剩余时间
+                var ssr = task.RemainingTime;
+
+                // 最终的输出
+                Logger.Info("<downInfo>  ssp: " + ssp + "  sst: "
+                    + sst + "   ssg: " + ssg + "   stp: " + stp + "   ssr: " + ssr);
+                // ========== 我的修改 ===============
             });
 
             //修改输出后缀

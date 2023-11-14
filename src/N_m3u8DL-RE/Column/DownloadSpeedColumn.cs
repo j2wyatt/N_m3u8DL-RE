@@ -1,5 +1,6 @@
 ﻿using N_m3u8DL_RE.Common.Log;
 using N_m3u8DL_RE.Entity;
+using N_m3u8DL_RE.Util;
 using Spectre.Console;
 using Spectre.Console.Rendering;
 using System;
@@ -45,11 +46,23 @@ namespace N_m3u8DL_RE.Column
                 if (speedContainer.Downloaded <= _stopSpeed) { speedContainer.AddLowSpeedCount(); }
                 else speedContainer.ResetLowSpeedCount();
                 speedContainer.Reset();
-                Logger.Info(FormatFileSize(speedContainer.NowSpeed) + (speedContainer.LowSpeedCount > 0 ? $"({speedContainer.LowSpeedCount})" : ""));
+                Logger.Info("<Speed>: "+FormatFileSize(speedContainer.NowSpeed) + (speedContainer.LowSpeedCount > 0 ? $"({speedContainer.LowSpeedCount})" : ""));
             }
             DateTimeStringDic[taskId] = now;
             var style = flag ? Style.Plain : MyStyle;
             return flag ? new Text("-", style).Centered() : new Text(FormatFileSize(speedContainer.NowSpeed) + (speedContainer.LowSpeedCount > 0 ? $"({speedContainer.LowSpeedCount})" : ""), style).Centered();
+        }
+
+        public static string FormatFileSz(double fileSize)
+        {
+            return fileSize switch
+            {
+                < 0 => throw new ArgumentOutOfRangeException(nameof(fileSize)),
+                >= 1024 * 1024 * 1024 => string.Format("{0:########0.00}GBps", (double)fileSize / (1024 * 1024 * 1024)),
+                >= 1024 * 1024 => string.Format("{0:####0.00}MBps", (double)fileSize / (1024 * 1024)),
+                >= 1024 => string.Format("{0:####0.00}KBps", (double)fileSize / 1024),
+                _ => string.Format("{0:####0.00}Bps", fileSize)
+            };
         }
 
         private static string FormatFileSize(double fileSize)

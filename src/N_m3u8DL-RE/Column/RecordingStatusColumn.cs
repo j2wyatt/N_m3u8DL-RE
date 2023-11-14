@@ -17,10 +17,10 @@ namespace N_m3u8DL_RE.Column
         public override IRenderable Render(RenderOptions options, ProgressTask task, TimeSpan deltaTime)
         {
             if (task.IsFinished){
-                Logger.Info($"{task.Value}/{task.MaxValue} Waiting  ");
+                Logger.Info($"<Record>: {task.Value}/{task.MaxValue} Waiting  ");
                 return new Text($"{task.Value}/{task.MaxValue} Waiting  ", FinishedStyle).LeftJustified();
             }
-            Logger.Info($"{task.Value}/{task.MaxValue} Recording");
+            Logger.Info($"<Record>: {task.Value}/{task.MaxValue} Recording");
             return new Text($"{task.Value}/{task.MaxValue} Recording", MyStyle).LeftJustified();
         }
     }

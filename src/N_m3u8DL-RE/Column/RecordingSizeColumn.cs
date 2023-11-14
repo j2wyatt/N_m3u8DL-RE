@@ -34,7 +34,7 @@ namespace N_m3u8DL_RE.Column
             }
             DateTimeStringDic[taskId] = now;
             var flag = RecodingSizeDic.TryGetValue(taskId, out var size);
-            Logger.Info(GlobalUtil.FormatFileSize(flag ? size : 0));
+            Logger.Info("<Size>: " + GlobalUtil.FormatFileSize(flag ? size : 0));
             return new Text(GlobalUtil.FormatFileSize(flag ? size : 0), MyStyle).LeftJustified();
         }
     }
