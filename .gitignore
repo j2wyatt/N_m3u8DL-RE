@@ -19,6 +19,7 @@ mono_crash.*
 # Properties
 Properties/
 /.idea
+.DS_Store
 
 # Build results
 [Dd]ebug/
