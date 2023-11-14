@@ -26,7 +26,7 @@ namespace N_m3u8DL_RE.Column
         {
             var percentage = task.Percentage;
             var style = percentage == 100 ? CompletedStyle : Style ?? Style.Plain;
-            Logger.Info($"[Age]: {task.Value}/{task.MaxValue} {percentage:F2}%", style);
+            Logger.Info($"<Age>: {task.Value}/{task.MaxValue} {percentage:F2}%", style);
             return new Text($"{task.Value}/{task.MaxValue} {percentage:F2}%", style).RightJustified();
         }
     }
