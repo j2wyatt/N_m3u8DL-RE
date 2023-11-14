@@ -13,13 +13,12 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v1
 
       - name: Set up dotnet
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: ${{ env.DOTNET_SDK_VERSION }}
-          include-prerelease: true
 
       - run: dotnet publish src/N_m3u8DL-RE -r win-x64 -c Release -o artifact-x64
       - run: dotnet publish src/N_m3u8DL-RE -r win-arm64 -c Release -o artifact-arm64
@@ -43,12 +42,11 @@ jobs:
     steps:
       - run: apt-get update
       - run: apt-get install -y curl wget
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v1
       - name: Set up dotnet
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: ${{ env.DOTNET_SDK_VERSION }}
-          include-prerelease: true
       - run: apt-get install -y libicu-dev libcurl4-openssl-dev zlib1g-dev libkrb5-dev
       - run: dotnet publish src/N_m3u8DL-RE -r linux-x64 -c Release -o artifact
 
@@ -63,12 +61,11 @@ jobs:
     container: mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-18.04-cross-arm64-20220312201346-b2c2436
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v1
       - name: Set up dotnet
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: ${{ env.DOTNET_SDK_VERSION }}
-          include-prerelease: true
       - run: dotnet publish src/N_m3u8DL-RE -r linux-arm64 -c Release -p:StripSymbols=true -p:CppCompilerAndLinker=clang-9 -p:SysRoot=/crossrootfs/arm64 -o artifact
 
       - name: Upload Artifact[linux-arm64]
@@ -81,13 +78,12 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v1
 
       - name: Set up dotnet
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: ${{ env.DOTNET_SDK_VERSION }}
-          include-prerelease: true
       - run: dotnet publish src/N_m3u8DL-RE -r osx-arm64 -c Release -o artifact-arm64 
       - run: dotnet publish src/N_m3u8DL-RE -r osx-x64 -c Release -o artifact-x64 
 
