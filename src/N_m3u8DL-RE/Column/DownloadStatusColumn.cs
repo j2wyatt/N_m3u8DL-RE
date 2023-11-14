@@ -39,7 +39,6 @@ namespace N_m3u8DL_RE.Column
                 var totalSize = speedContainer.SingleSegment ? (speedContainer.ResponseLength ?? 0) : (long)(size / (task.Value / task.MaxValue));
 
                 // todo 我的修改
-
                 Logger.Info($"<Status>: {GlobalUtil.FormatFileSize(size)}/{GlobalUtil.FormatFileSize(totalSize)}");
 
                 SizeDic[task.Id] = $"{GlobalUtil.FormatFileSize(size)}/{GlobalUtil.FormatFileSize(totalSize)}";
