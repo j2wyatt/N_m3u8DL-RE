@@ -31,12 +31,12 @@ namespace N_m3u8DL_RE.Column
         {
             if (_refreshedDurDic == null)
             {
-                Logger.Info($"{GlobalUtil.FormatTime(_recodingDurDic[task.Id])}");
+                Logger.Info($"[Duration]: {GlobalUtil.FormatTime(_recodingDurDic[task.Id])}");
                 return new Text($"{GlobalUtil.FormatTime(_recodingDurDic[task.Id])}", MyStyle).LeftJustified();
             }
             else
             {                
-                Logger.Info($"{GlobalUtil.FormatTime(_recodingDurDic[task.Id])}/{GlobalUtil.FormatTime(_refreshedDurDic[task.Id])}");
+                Logger.Info($"[Duration]: {GlobalUtil.FormatTime(_recodingDurDic[task.Id])}/{GlobalUtil.FormatTime(_refreshedDurDic[task.Id])}");
                 return new Text($"{GlobalUtil.FormatTime(_recodingDurDic[task.Id])}/{GlobalUtil.FormatTime(_refreshedDurDic[task.Id])}", GreyStyle);
             }
         }

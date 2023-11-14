@@ -40,7 +40,7 @@ namespace N_m3u8DL_RE.Column
 
                 // todo 我的修改
 
-                Logger.Info($"{GlobalUtil.FormatFileSize(size)}/{GlobalUtil.FormatFileSize(totalSize)}");
+                Logger.Info($"[Status]: {GlobalUtil.FormatFileSize(size)}/{GlobalUtil.FormatFileSize(totalSize)}");
 
                 SizeDic[task.Id] = $"{GlobalUtil.FormatFileSize(size)}/{GlobalUtil.FormatFileSize(totalSize)}";
             }
