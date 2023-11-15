@@ -275,8 +275,8 @@ namespace N_m3u8DL_RE.DownloadManager
                 var result = await Downloader.DownloadSegmentAsync(seg, path, speedContainer, headers);
                 FileDic[seg] = result;
 
-                Logger.Info(result.ToString())
-                Logger.Info(segments.ToString())
+                Logger.Info(result.ToString());
+                Logger.Info(segments.ToString());
 
 
                 if (result != null && result.Success)
