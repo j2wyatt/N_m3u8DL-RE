@@ -270,6 +270,8 @@ namespace N_m3u8DL_RE.DownloadManager
                         Logger.Info("第三点");
             await Parallel.ForEachAsync(segments, options, async (seg, _) =>
             {
+                Logger.Info(seg.ToString());
+                Logger.Info(speedContainer.ToString());
                 var index = seg.Index;
                 var path = Path.Combine(tmpDir, index.ToString(pad) + $".{streamSpec.Extension ?? "clip"}.tmp");
                 var result = await Downloader.DownloadSegmentAsync(seg, path, speedContainer, headers);
