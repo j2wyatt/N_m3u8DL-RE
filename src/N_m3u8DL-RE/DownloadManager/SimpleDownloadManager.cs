@@ -279,7 +279,19 @@ namespace N_m3u8DL_RE.DownloadManager
                 // 分片完成和总数量，
                 // 任务进度百分比，
                 // 任务完成和总大小，
+                
+
+
+
                 // 每秒的下载速度
+                Logger.Info("test speed");
+                var mySpeed = new DownloadSpeedColumn()
+                Logger.Info(mySpeed.ToString());
+                Logger.Info("test speed finish");
+
+
+
+
                 // 任务剩余完成时间
 
 
