@@ -267,11 +267,23 @@ namespace N_m3u8DL_RE.DownloadManager
             {
                 MaxDegreeOfParallelism = DownloaderConfig.MyOptions.ThreadCount
             };
-                        Logger.Info("第三点");
+
+            Logger.Info(">>>>>    第三点");
+
+
+
+
             await Parallel.ForEachAsync(segments, options, async (seg, _) =>
             {
-                Logger.Info(seg.ToString());
-                Logger.Info(speedContainer.ToString());
+                Logger.Info(">>>>>>>>>>> seg 打印 =====================");
+                Logger.Info(seg.Index.ToString());
+                Logger.Info(seg.Duration.ToString());
+                Logger.Info(seg.Title.ToString());
+                Logger.Info(seg.DateTime.ToString());
+                Logger.Info(seg.StartRange.ToString());
+                Logger.Info(seg.StopRange.ToString());
+                Logger.Info(seg.ExpectLength.ToString());
+                Logger.Info("<<<<<<<<<< seg 打印 结束 =====================");
                 var index = seg.Index;
                 var path = Path.Combine(tmpDir, index.ToString(pad) + $".{streamSpec.Extension ?? "clip"}.tmp");
                 var result = await Downloader.DownloadSegmentAsync(seg, path, speedContainer, headers);
@@ -280,6 +292,7 @@ namespace N_m3u8DL_RE.DownloadManager
                 Logger.Info(">>>>>>>>>>> task 打印 =====================");
                 Logger.Info(task.ElapsedTime.ToString());
                 Logger.Info(task.Id.ToString());
+                Logger.Info(task.Value.ToString());
                 Logger.Info(task.IsFinished.ToString());
                 Logger.Info(task.MaxValue.ToString());
                 Logger.Info(task.Percentage.ToString());
@@ -298,12 +311,14 @@ namespace N_m3u8DL_RE.DownloadManager
                 Logger.Info(speedContainer.LowSpeedCount.ToString());
                 Logger.Info(speedContainer.ShouldStop.ToString());
                 Logger.Info(speedContainer.Downloaded.ToString());
-
                 Logger.Info("<<<<<<<<<< speed 打印 结束 =====================");
 
 
-                Logger.Info(result.ToString());
-                Logger.Info(segments.ToString());
+                Logger.Info(">>>>>>>>>>> result 打印 =====================");
+                Logger.Info(result.RespContentLength.ToString());
+                Logger.Info(result.RespContentLength.ToString());
+                Logger.Info(result.ActualContentLength.ToString());
+                Logger.Info("<<<<<<<<<< result 打印 结束 =====================");
 
 
                 if (result != null && result.Success)
@@ -691,12 +706,12 @@ namespace N_m3u8DL_RE.DownloadManager
                     foreach (var kp in dic)
                     {
                         var task = kp.Value;
-                        Logger.Info("第一点");
+                        Logger.Info(">>>>>>    第一点");
                         Logger.Info(task.Value.ToString());
                         Logger.Info(task.ToString());
                         var result = await DownloadStreamAsync(kp.Key, task, SpeedContainerDic[task.Id]);
                         Results[kp.Key] = result;
-                        Logger.Info("第二点");
+                        Logger.Info(">>>>>>>>    第二点");
                         //失败不再下载后续
                         if (!result) break;
                     }
