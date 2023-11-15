@@ -267,12 +267,18 @@ namespace N_m3u8DL_RE.DownloadManager
             {
                 MaxDegreeOfParallelism = DownloaderConfig.MyOptions.ThreadCount
             };
+                        Logger.Info("第三点");
             await Parallel.ForEachAsync(segments, options, async (seg, _) =>
             {
                 var index = seg.Index;
                 var path = Path.Combine(tmpDir, index.ToString(pad) + $".{streamSpec.Extension ?? "clip"}.tmp");
                 var result = await Downloader.DownloadSegmentAsync(seg, path, speedContainer, headers);
                 FileDic[seg] = result;
+
+                Logger.Info(result.ToString())
+                Logger.Info(segments.ToString())
+
+
                 if (result != null && result.Success)
                     task.Increment(1);
                 //实时解密
@@ -658,10 +664,12 @@ namespace N_m3u8DL_RE.DownloadManager
                     foreach (var kp in dic)
                     {
                         var task = kp.Value;
-                        var result = await DownloadStreamAsync(kp.Key, task, SpeedContainerDic[task.Id]);
-                        Results[kp.Key] = result;
+                        Logger.Info("第一点");
                         Logger.Info(task.Value.ToString());
                         Logger.Info(task.ToString());
+                        var result = await DownloadStreamAsync(kp.Key, task, SpeedContainerDic[task.Id]);
+                        Results[kp.Key] = result;
+                        Logger.Info("第二点");
                         //失败不再下载后续
                         if (!result) break;
                     }
