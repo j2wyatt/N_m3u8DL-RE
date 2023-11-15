@@ -661,7 +661,7 @@ namespace N_m3u8DL_RE.DownloadManager
                         var result = await DownloadStreamAsync(kp.Key, task, SpeedContainerDic[task.Id]);
                         Results[kp.Key] = result;
                         Logger.Info(task.Value.ToString());
-                        Logger.Info(task.toString());
+                        Logger.Info(task.ToString());
                         //失败不再下载后续
                         if (!result) break;
                     }
