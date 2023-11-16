@@ -277,8 +277,14 @@ namespace N_m3u8DL_RE.DownloadManager
             await Parallel.ForEachAsync(segments, options, async (seg, _) =>
             {
                 // 需要的参数: 
-                // 分片完成和总数量，
-                // 任务进度百分比，
+                // ======== 分片完成和总数量 ========
+                var ssg = $"{task.Value}/{task.MaxValue}";
+                // Logger.Info($"<Age>: {task.Value}/{task.MaxValue} {percentage:F2}%", style);
+
+                // ========= 任务进度百分比 =========
+                var stp = $"{task.Percentage:F2}%";
+                // Logger.Info($"<Age>: {task.Value}/{task.MaxValue} {percentage:F2}%", style);
+
 
                 // ========= 任务完成和总大小 =======
                 // Logger.Info("test status");
@@ -300,7 +306,8 @@ namespace N_m3u8DL_RE.DownloadManager
 
 
 
-                Logger.Info("<downInfo>  ssp: " +ssp + "  sst: "+ sst);
+                Logger.Info("<downInfo>  ssp: " + ssp + "  sst: "
+                    + sst + "   ssg: " + ssg + "   stp: " + stp);
 
 
 
