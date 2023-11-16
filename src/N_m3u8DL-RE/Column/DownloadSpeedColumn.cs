@@ -55,7 +55,7 @@ namespace N_m3u8DL_RE.Column
         public Text RenderDemo(ProgressTask task, SpeedContainer speedContainer)
         {
             var taskId = task.Id;
-            var speedContainer = SpeedContainerDic[taskId];
+            // var speedContainer = SpeedContainerDic[taskId];
             var now = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             var flag = task.IsFinished || !task.IsStarted;
             //单文件下载汇报进度
