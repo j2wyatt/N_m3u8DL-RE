@@ -284,7 +284,7 @@ namespace N_m3u8DL_RE.DownloadManager
 
 
                 // 每秒的下载速度
-                // Logger.Info("test speed");
+                Logger.Info("test speed");
 
                 // ConcurrentDictionary<int, SpeedContainer> csp = new();
                 // csp[task.Id] = speedContainer;
@@ -292,9 +292,10 @@ namespace N_m3u8DL_RE.DownloadManager
                 // var ssp = DownloadSpeedColumn.RenderDemo(task);
                 // Logger.Info(ssp.ToString());
 
-                // var flag = task.IsFinished || !task.IsStarted;
-                // var ssp = flag ? "-" : FormatFileSize(speedContainer.NowSpeed) + (speedContainer.LowSpeedCount > 0 ? $"({speedContainer.LowSpeedCount})" : "");
-                // Logger.Info("test speed finish");
+                var flag = task.IsFinished || !task.IsStarted;
+                var ssp = flag ? "-" : DownloadSpeedColumn.FormatFileSize(speedContainer.NowSpeed) + (speedContainer.LowSpeedCount > 0 ? $"({speedContainer.LowSpeedCount})" : "");
+
+                Logger.Info("test speed finish");
 
 
 
