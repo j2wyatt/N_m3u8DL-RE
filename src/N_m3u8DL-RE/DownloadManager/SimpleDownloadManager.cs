@@ -286,7 +286,7 @@ namespace N_m3u8DL_RE.DownloadManager
                 // 每秒的下载速度
                 Logger.Info("test speed");
 
-                ConcurrentDictionary<int, string> csp = new();
+                ConcurrentDictionary<int, SpeedContainer> csp = new();
                 csp[task.Id] = speedContainer;
                 var mySpeed = new DownloadSpeedColumn(csp);
                 var ssp = mySpeed.RenderDemo(task);
