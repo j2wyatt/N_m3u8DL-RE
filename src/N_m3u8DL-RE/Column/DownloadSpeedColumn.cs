@@ -53,14 +53,6 @@ namespace N_m3u8DL_RE.Column
             return flag ? new Text("-", style).Centered() : new Text(FormatFileSize(speedContainer.NowSpeed) + (speedContainer.LowSpeedCount > 0 ? $"({speedContainer.LowSpeedCount})" : ""), style).Centered();
         }
 
-        // public static string RenderDemo(ProgressTask task, SpeedContainer speedContainer)
-        // {
-        //     var taskId = task.Id;
-        //     var flag = task.IsFinished || !task.IsStarted;
-
-        //     return flag ? "-" : FormatFileSize(speedContainer.NowSpeed) + (speedContainer.LowSpeedCount > 0 ? $"({speedContainer.LowSpeedCount})" : "");
-        // }
-
         public static string FormatFileSz(double fileSize)
         {
             return fileSize switch
