@@ -269,11 +269,6 @@ namespace N_m3u8DL_RE.DownloadManager
                 MaxDegreeOfParallelism = DownloaderConfig.MyOptions.ThreadCount
             };
 
-            // Logger.Info(">>>>>    第三点");
-
-
-
-
             await Parallel.ForEachAsync(segments, options, async (seg, _) =>
             {
                 // 需要的参数: 
@@ -310,61 +305,13 @@ namespace N_m3u8DL_RE.DownloadManager
                 Logger.Info("<downInfo>  ssp: " + ssp + "  sst: "
                     + sst + "   ssg: " + ssg + "   stp: " + stp +"   ssr: " + ssr);
 
+                // ========== 我的修改 ===============
 
-
-
-
-
-                // Logger.Info(">>>>>>>>>>> seg 打印, 容易出错 =====================");
-                // Logger.Info(seg.Index.ToString());
-                // Logger.Info(seg.Duration.ToString());
-                // // //Logger.Info(seg.Title.ToString());
-                // Logger.Info(seg.DateTime.ToString());
-                // Logger.Info("seg 1");
-                // Logger.Info(seg.StartRange.ToString());
-                // Logger.Info("seg 2");
-                // Logger.Info(seg.StopRange.ToString());
-                // Logger.Info("seg 3");
-                // Logger.Info(seg.ExpectLength.ToString());
-                // Logger.Info("seg 4");
-                // Logger.Info("<<<<<<<<<< seg 打印 结束 =====================");
 
                 var index = seg.Index;
                 var path = Path.Combine(tmpDir, index.ToString(pad) + $".{streamSpec.Extension ?? "clip"}.tmp");
                 var result = await Downloader.DownloadSegmentAsync(seg, path, speedContainer, headers);
                 FileDic[seg] = result;
-
-                // Logger.Info("============= task 打印 =====================");
-                // Logger.Info(task.ElapsedTime.ToString());
-                // Logger.Info(task.Id.ToString());
-                // Logger.Info(task.Value.ToString());
-                // Logger.Info(task.IsFinished.ToString());
-                // Logger.Info(task.MaxValue.ToString());
-                // Logger.Info(task.Percentage.ToString());
-                // Logger.Info(task.RemainingTime.ToString());
-                // Logger.Info(task.Speed.ToString());
-                // Logger.Info(task.State.ToString());
-                // Logger.Info(task.Description.ToString());
-                // Logger.Info("============= task 打印 结束 =====================");
-
-                // Logger.Info("============== speed 打印 =====================");
-                // Logger.Info(speedContainer.SingleSegment.ToString());
-                // Logger.Info(speedContainer.NowSpeed.ToString());
-                // Logger.Info(speedContainer.SpeedLimit.ToString());
-                // Logger.Info(speedContainer.ResponseLength.ToString());
-                // Logger.Info(speedContainer.RDownloaded.ToString());
-                // Logger.Info(speedContainer.LowSpeedCount.ToString());
-                // Logger.Info(speedContainer.ShouldStop.ToString());
-                // Logger.Info(speedContainer.Downloaded.ToString());
-                // Logger.Info("============= speed 打印 结束 =====================");
-
-
-                // Logger.Info(">>>>>>>>>>> result 打印 =====================");
-                // Logger.Info(result.RespContentLength.ToString());
-                // Logger.Info(result.RespContentLength.ToString());
-                // Logger.Info(result.ActualContentLength.ToString());
-                // Logger.Info("<<<<<<<<<< result 打印 结束 =====================");
-
 
                 if (result != null && result.Success)
                     task.Increment(1);
@@ -751,14 +698,8 @@ namespace N_m3u8DL_RE.DownloadManager
                     foreach (var kp in dic)
                     {
                         var task = kp.Value;
-
-                        task.IsIndeterminate = false;
-                        // Logger.Info(">>>>>>    第一点");
-                        // Logger.Info(task.Value.ToString());
-                        // Logger.Info(task.ToString());
                         var result = await DownloadStreamAsync(kp.Key, task, SpeedContainerDic[task.Id]);
                         Results[kp.Key] = result;
-                        // Logger.Info(">>>>>>>>    第二点");
                         //失败不再下载后续
                         if (!result) break;
                     }
