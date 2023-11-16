@@ -302,7 +302,7 @@ namespace N_m3u8DL_RE.DownloadManager
                 // Logger.Info("-------- ssp: " +ssp);
                 // Logger.Info("test speed finish");
 
-                // 任务剩余完成时间
+                // 任务剩余时间
 
 
 
@@ -314,19 +314,19 @@ namespace N_m3u8DL_RE.DownloadManager
 
 
 
-                Logger.Info(">>>>>>>>>>> seg 打印, 容易出错 =====================");
-                Logger.Info(seg.Index.ToString());
-                Logger.Info(seg.Duration.ToString());
-                // //Logger.Info(seg.Title.ToString());
-                Logger.Info(seg.DateTime.ToString());
-                Logger.Info("seg 1");
-                Logger.Info(seg.StartRange.ToString());
-                Logger.Info("seg 2");
-                Logger.Info(seg.StopRange.ToString());
-                Logger.Info("seg 3");
-                Logger.Info(seg.ExpectLength.ToString());
-                Logger.Info("seg 4");
-                Logger.Info("<<<<<<<<<< seg 打印 结束 =====================");
+                // Logger.Info(">>>>>>>>>>> seg 打印, 容易出错 =====================");
+                // Logger.Info(seg.Index.ToString());
+                // Logger.Info(seg.Duration.ToString());
+                // // //Logger.Info(seg.Title.ToString());
+                // Logger.Info(seg.DateTime.ToString());
+                // Logger.Info("seg 1");
+                // Logger.Info(seg.StartRange.ToString());
+                // Logger.Info("seg 2");
+                // Logger.Info(seg.StopRange.ToString());
+                // Logger.Info("seg 3");
+                // Logger.Info(seg.ExpectLength.ToString());
+                // Logger.Info("seg 4");
+                // Logger.Info("<<<<<<<<<< seg 打印 结束 =====================");
 
                 var index = seg.Index;
                 var path = Path.Combine(tmpDir, index.ToString(pad) + $".{streamSpec.Extension ?? "clip"}.tmp");
@@ -750,6 +750,8 @@ namespace N_m3u8DL_RE.DownloadManager
                     foreach (var kp in dic)
                     {
                         var task = kp.Value;
+
+                        task.IsIndeterminate = false;
                         // Logger.Info(">>>>>>    第一点");
                         // Logger.Info(task.Value.ToString());
                         // Logger.Info(task.ToString());
