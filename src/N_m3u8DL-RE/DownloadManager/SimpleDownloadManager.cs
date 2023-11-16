@@ -289,7 +289,7 @@ namespace N_m3u8DL_RE.DownloadManager
                 // ========= 任务完成和总大小 =======
                 // Logger.Info("test status");
                 var ttSize = speedContainer.SingleSegment ? (speedContainer.ResponseLength ?? 0) : (long)(speedContainer.RDownloaded / (task.Value / task.MaxValue));
-                var sst = $"{GlobalUtil.FormatFileSize(speedContainer.RDownloaded)}/{GlobalUtil.FormatFileSize(totalSize)}";
+                var sst = $"{GlobalUtil.FormatFileSize(speedContainer.RDownloaded)}/{GlobalUtil.FormatFileSize(ttSize)}";
                 // Logger.Info("--------- sst: "+sst);
 
 
