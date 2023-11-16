@@ -279,31 +279,27 @@ namespace N_m3u8DL_RE.DownloadManager
                 // 分片完成和总数量，
                 // 任务进度百分比，
 
-                // 任务完成和总大小，
-                Logger.Info("test status");
+                // ========= 任务完成和总大小 =======
+                // Logger.Info("test status");
                 var ttSize = speedContainer.SingleSegment ? (speedContainer.ResponseLength ?? 0) : (long)(speedContainer.RDownloaded / (task.Value / task.MaxValue));
                 var sst = $"{GlobalUtil.FormatFileSize(speedContainer.RDownloaded)}/{GlobalUtil.FormatFileSize(totalSize)}";
-                Logger.Info("--------- sst: "+sst);
+                // Logger.Info("--------- sst: "+sst);
 
 
-                // 每秒的下载速度
-                Logger.Info("test speed");
-                // ConcurrentDictionary<int, SpeedContainer> csp = new();
-                // csp[task.Id] = speedContainer;
-                // var mySpeed = new DownloadSpeedColumn(csp);
-                // var ssp = DownloadSpeedColumn.RenderDemo(task);
-                // Logger.Info(ssp.ToString());
-
+                // ====== 每秒的下载速度 ==========
+                // Logger.Info("test speed");
                 var flag = task.IsFinished || !task.IsStarted;
                 var ssp = flag ? "-" : DownloadSpeedColumn.FormatFileSz(speedContainer.NowSpeed) + (speedContainer.LowSpeedCount > 0 ? $"({speedContainer.LowSpeedCount})" : "");
-                Logger.Info("------- NowSpeed:  " + speedContainer.NowSpeed.ToString());
-                Logger.Info("------- LowSpeedCount:  " + speedContainer.LowSpeedCount.ToString());
-                Logger.Info("-------- ssp: " +ssp);
-                Logger.Info("test speed finish");
+                // Logger.Info("------- NowSpeed:  " + speedContainer.NowSpeed.ToString());
+                // Logger.Info("------- LowSpeedCount:  " + speedContainer.LowSpeedCount.ToString());
+                // Logger.Info("-------- ssp: " +ssp);
+                // Logger.Info("test speed finish");
 
                 // 任务剩余完成时间
 
 
+
+                Logger.Info("<downInfo>  ssp: " +ssp + "  sst: "+ sst);
 
 
 
