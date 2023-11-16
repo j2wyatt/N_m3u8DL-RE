@@ -301,7 +301,7 @@ namespace N_m3u8DL_RE.DownloadManager
 
 
                 Logger.Info(">>>>>>>>>>> seg 打印, 容易出错 =====================");
-                Logger.Info(seg?.Index?.ToString());
+                // Logger.Info(seg?.Index?.ToString());
                 // Logger.Info(seg?.Duration?.ToString());
                 // // //Logger.Info(seg.Title.ToString());
                 // Logger.Info(seg?.DateTime?.ToString());
@@ -345,9 +345,9 @@ namespace N_m3u8DL_RE.DownloadManager
 
 
                 Logger.Info(">>>>>>>>>>> result 打印 =====================");
-                Logger.Info(result.RespContentLength.ToString());
-                Logger.Info(result.RespContentLength.ToString());
-                Logger.Info(result.ActualContentLength.ToString());
+                // Logger.Info(result.RespContentLength.ToString());
+                // Logger.Info(result.RespContentLength.ToString());
+                // Logger.Info(result.ActualContentLength.ToString());
                 Logger.Info("<<<<<<<<<< result 打印 结束 =====================");
 
 
