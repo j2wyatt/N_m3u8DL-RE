@@ -54,8 +54,10 @@ namespace N_m3u8DL_RE.Column
 
         public Text RenderDemo(ProgressTask task)
         {
+            var taskId = task.Id;
             var speedContainer = SpeedContainerDic[taskId];
             var flag = task.IsFinished || !task.IsStarted;
+
             return flag ? "-" : FormatFileSize(speedContainer.NowSpeed) + (speedContainer.LowSpeedCount > 0 ? $"({speedContainer.LowSpeedCount})" : "");
         }
 
