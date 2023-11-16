@@ -271,43 +271,6 @@ namespace N_m3u8DL_RE.DownloadManager
 
             await Parallel.ForEachAsync(segments, options, async (seg, _) =>
             {
-                // 需要的参数: 
-                // ======== 分片完成和总数量 ========
-                var ssg = $"{task.Value}/{task.MaxValue}";
-                // Logger.Info($"<Age>: {task.Value}/{task.MaxValue} {percentage:F2}%", style);
-
-                // ========= 任务进度百分比 =========
-                var stp = $"{task.Percentage:F2}%";
-                // Logger.Info($"<Age>: {task.Value}/{task.MaxValue} {percentage:F2}%", style);
-
-
-                // ========= 任务完成和总大小 =======
-                // Logger.Info("test status");
-                var ttSize = speedContainer.SingleSegment ? (speedContainer.ResponseLength ?? 0) : (long)(speedContainer.RDownloaded / (task.Value / task.MaxValue));
-                var sst = $"{GlobalUtil.FormatFileSize(speedContainer.RDownloaded)}/{GlobalUtil.FormatFileSize(ttSize)}";
-                // Logger.Info("--------- sst: "+sst);
-
-
-                // ====== 每秒的下载速度 ==========
-                // Logger.Info("test speed");
-                var flag = task.IsFinished || !task.IsStarted;
-                var ssp = flag ? "-" : DownloadSpeedColumn.FormatFileSz(speedContainer.NowSpeed) + (speedContainer.LowSpeedCount > 0 ? $"({speedContainer.LowSpeedCount})" : "");
-                // Logger.Info("------- NowSpeed:  " + speedContainer.NowSpeed.ToString());
-                // Logger.Info("------- LowSpeedCount:  " + speedContainer.LowSpeedCount.ToString());
-                // Logger.Info("-------- ssp: " +ssp);
-                // Logger.Info("test speed finish");
-
-                // 任务剩余时间
-                var ssr = task.RemainingTime;
-
-
-
-                // Logger.Info("<downInfo>  ssp: " + ssp + "  sst: "
-                //     + sst + "   ssg: " + ssg + "   stp: " + stp +"   ssr: " + ssr);
-
-                // ========== 我的修改 ===============
-
-
                 var index = seg.Index;
                 var path = Path.Combine(tmpDir, index.ToString(pad) + $".{streamSpec.Extension ?? "clip"}.tmp");
                 var result = await Downloader.DownloadSegmentAsync(seg, path, speedContainer, headers);
@@ -327,6 +290,26 @@ namespace N_m3u8DL_RE.DownloadManager
                         result.ActualFilePath = dec;
                     }
                 }
+
+                // ===============   需要的参数  ===================
+                // ======== 分片完成和总数量 ========
+                var ssg = $"{task.Value}/{task.MaxValue}";
+                // ========= 任务进度百分比 =========
+                var stp = $"{task.Percentage:F2}%";
+                // ========= 任务完成和总大小 =======
+                // Logger.Info("test status");
+                var ttSize = speedContainer.SingleSegment ? (speedContainer.ResponseLength ?? 0) : (long)(speedContainer.RDownloaded / (task.Value / task.MaxValue));
+                var sst = $"{GlobalUtil.FormatFileSize(speedContainer.RDownloaded)}/{GlobalUtil.FormatFileSize(ttSize)}";
+                // ====== 每秒的下载速度 ==========
+                var flag = task.IsFinished || !task.IsStarted;
+                var ssp = flag ? "-" : DownloadSpeedColumn.FormatFileSz(speedContainer.NowSpeed) + (speedContainer.LowSpeedCount > 0 ? $"({speedContainer.LowSpeedCount})" : "");
+                // 任务剩余时间
+                var ssr = task.RemainingTime;
+
+                // 最终的输出
+                Logger.Info("<downInfo>  ssp: " + ssp + "  sst: "
+                    + sst + "   ssg: " + ssg + "   stp: " + stp + "   ssr: " + ssr);
+                // ========== 我的修改 ===============
             });
 
             //修改输出后缀
