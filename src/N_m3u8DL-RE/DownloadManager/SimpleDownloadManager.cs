@@ -293,7 +293,7 @@ namespace N_m3u8DL_RE.DownloadManager
                 // Logger.Info(ssp.ToString());
 
                 var flag = task.IsFinished || !task.IsStarted;
-                var ssp = flag ? "-" : DownloadSpeedColumn.FormatFileSize(speedContainer.NowSpeed) + (speedContainer.LowSpeedCount > 0 ? $"({speedContainer.LowSpeedCount})" : "");
+                var ssp = flag ? "-" : DownloadSpeedColumn.FormatFileSz(speedContainer.NowSpeed) + (speedContainer.LowSpeedCount > 0 ? $"({speedContainer.LowSpeedCount})" : "");
 
                 Logger.Info("test speed finish");
 
