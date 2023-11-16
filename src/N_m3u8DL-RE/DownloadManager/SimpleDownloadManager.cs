@@ -10,6 +10,7 @@ using N_m3u8DL_RE.Entity;
 using N_m3u8DL_RE.Parser;
 using N_m3u8DL_RE.Parser.Mp4;
 using N_m3u8DL_RE.Util;
+using N_m3u8DL_RE.Common.Util;
 using Spectre.Console;
 using System.Collections.Concurrent;
 using System.Text;
