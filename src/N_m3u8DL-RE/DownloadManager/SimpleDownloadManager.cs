@@ -289,7 +289,7 @@ namespace N_m3u8DL_RE.DownloadManager
                 // ConcurrentDictionary<int, SpeedContainer> csp = new();
                 // csp[task.Id] = speedContainer;
                 // var mySpeed = new DownloadSpeedColumn(csp);
-                var ssp = DownloadSpeedColumn.RenderDemo(task);
+                var ssp = DownloadSpeedColumn.RenderDemo(task, speedContainer);
                 Logger.Info(ssp.ToString());
                 Logger.Info("test speed finish");
 
