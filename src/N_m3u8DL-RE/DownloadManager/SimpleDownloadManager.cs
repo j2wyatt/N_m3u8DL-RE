@@ -314,19 +314,19 @@ namespace N_m3u8DL_RE.DownloadManager
 
 
 
-                // Logger.Info(">>>>>>>>>>> seg 打印, 容易出错 =====================");
-                // Logger.Info(seg?.Index?.ToString());
-                // Logger.Info(seg?.Duration?.ToString());
-                // // //Logger.Info(seg.Title.ToString());
-                // Logger.Info(seg?.DateTime?.ToString());
-                // Logger.Info("seg 1");
-                // Logger.Info(seg?.StartRange?.ToString());
-                // Logger.Info("seg 2");
-                // Logger.Info(seg?.StopRange?.ToString());
-                // Logger.Info("seg 3");
-                // Logger.Info(seg?.ExpectLength?.ToString());
-                // Logger.Info("seg 4");
-                // Logger.Info("<<<<<<<<<< seg 打印 结束 =====================");
+                Logger.Info(">>>>>>>>>>> seg 打印, 容易出错 =====================");
+                Logger.Info(seg.Index.ToString());
+                Logger.Info(seg.Duration.ToString());
+                // //Logger.Info(seg.Title.ToString());
+                Logger.Info(seg.DateTime.ToString());
+                Logger.Info("seg 1");
+                Logger.Info(seg.StartRange.ToString());
+                Logger.Info("seg 2");
+                Logger.Info(seg.StopRange.ToString());
+                Logger.Info("seg 3");
+                Logger.Info(seg.ExpectLength.ToString());
+                Logger.Info("seg 4");
+                Logger.Info("<<<<<<<<<< seg 打印 结束 =====================");
 
                 var index = seg.Index;
                 var path = Path.Combine(tmpDir, index.ToString(pad) + $".{streamSpec.Extension ?? "clip"}.tmp");
@@ -358,11 +358,11 @@ namespace N_m3u8DL_RE.DownloadManager
                 // Logger.Info("============= speed 打印 结束 =====================");
 
 
-                Logger.Info(">>>>>>>>>>> result 打印 =====================");
-                Logger.Info(result.RespContentLength.ToString());
-                Logger.Info(result.RespContentLength.ToString());
-                Logger.Info(result.ActualContentLength.ToString());
-                Logger.Info("<<<<<<<<<< result 打印 结束 =====================");
+                // Logger.Info(">>>>>>>>>>> result 打印 =====================");
+                // Logger.Info(result.RespContentLength.ToString());
+                // Logger.Info(result.RespContentLength.ToString());
+                // Logger.Info(result.ActualContentLength.ToString());
+                // Logger.Info("<<<<<<<<<< result 打印 结束 =====================");
 
 
                 if (result != null && result.Success)
