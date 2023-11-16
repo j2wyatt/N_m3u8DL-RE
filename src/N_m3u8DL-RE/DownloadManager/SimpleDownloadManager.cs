@@ -303,11 +303,12 @@ namespace N_m3u8DL_RE.DownloadManager
                 // Logger.Info("test speed finish");
 
                 // 任务剩余时间
+                var ssr = task.RemainingTime;
 
 
 
                 Logger.Info("<downInfo>  ssp: " + ssp + "  sst: "
-                    + sst + "   ssg: " + ssg + "   stp: " + stp);
+                    + sst + "   ssg: " + ssg + "   stp: " + stp +"   ssr: " + ssr);
 
 
 
