@@ -52,10 +52,10 @@ namespace N_m3u8DL_RE.Column
             return flag ? new Text("-", style).Centered() : new Text(FormatFileSize(speedContainer.NowSpeed) + (speedContainer.LowSpeedCount > 0 ? $"({speedContainer.LowSpeedCount})" : ""), style).Centered();
         }
 
-        public Text RenderDemo(ProgressTask task, SpeedContainer speedContainer)
+        public Text RenderDemo(ProgressTask task)
         {
             var taskId = task.Id;
-            // var speedContainer = SpeedContainerDic[taskId];
+            var speedContainer = SpeedContainerDic[taskId];
             var now = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             var flag = task.IsFinished || !task.IsStarted;
             //单文件下载汇报进度

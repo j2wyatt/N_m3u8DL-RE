@@ -279,14 +279,17 @@ namespace N_m3u8DL_RE.DownloadManager
                 // 分片完成和总数量，
                 // 任务进度百分比，
                 // 任务完成和总大小，
-                
+
 
 
 
                 // 每秒的下载速度
                 Logger.Info("test speed");
-                var mySpeed = new DownloadSpeedColumn();
-                var ssp = mySpeed.RenderDemo(task, speedContainer);
+
+                ConcurrentDictionary<int, string> csp = new();
+                csp[task.Id] = speedContainer;
+                var mySpeed = new DownloadSpeedColumn(csp);
+                var ssp = mySpeed.RenderDemo(task);
                 Logger.Info(ssp.ToString());
                 Logger.Info("test speed finish");
 
