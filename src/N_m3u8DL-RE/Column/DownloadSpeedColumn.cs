@@ -76,7 +76,7 @@ namespace N_m3u8DL_RE.Column
             }
             DateTimeStringDic[taskId] = now;
             var style = flag ? Style.Plain : MyStyle;
-            return flag ? new Text("-", style).Centered() : new Text(FormatFileSize(speedContainer.NowSpeed) + (speedContainer.LowSpeedCount > 0 ? $"({speedContainer.LowSpeedCount})" : ""), style).Centered();
+            return flag ? "-" : FormatFileSize(speedContainer.NowSpeed) + (speedContainer.LowSpeedCount > 0 ? $"({speedContainer.LowSpeedCount})" : "");
         }
 
         private static string FormatFileSize(double fileSize)
