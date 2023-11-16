@@ -323,29 +323,29 @@ namespace N_m3u8DL_RE.DownloadManager
                 var result = await Downloader.DownloadSegmentAsync(seg, path, speedContainer, headers);
                 FileDic[seg] = result;
 
-                // Logger.Info(">>>>>>>>>>> task 打印 =====================");
-                // Logger.Info(task.ElapsedTime.ToString());
-                // Logger.Info(task.Id.ToString());
-                // Logger.Info(task.Value.ToString());
-                // Logger.Info(task.IsFinished.ToString());
-                // Logger.Info(task.MaxValue.ToString());
-                // Logger.Info(task.Percentage.ToString());
-                // Logger.Info(task.RemainingTime.ToString());
-                // Logger.Info(task.Speed.ToString());
-                // Logger.Info(task.State.ToString());
-                // Logger.Info(task.Description.ToString());
-                // Logger.Info("<<<<<<<<<< task 打印 结束 =====================");
+                Logger.Info("============= task 打印 =====================");
+                Logger.Info(task.ElapsedTime.ToString());
+                Logger.Info(task.Id.ToString());
+                Logger.Info(task.Value.ToString());
+                Logger.Info(task.IsFinished.ToString());
+                Logger.Info(task.MaxValue.ToString());
+                Logger.Info(task.Percentage.ToString());
+                Logger.Info(task.RemainingTime.ToString());
+                Logger.Info(task.Speed.ToString());
+                Logger.Info(task.State.ToString());
+                Logger.Info(task.Description.ToString());
+                Logger.Info("============= task 打印 结束 =====================");
 
-                // Logger.Info(">>>>>>>>>>> speed 打印 =====================");
-                // Logger.Info(speedContainer.SingleSegment.ToString());
-                // Logger.Info(speedContainer.NowSpeed.ToString());
-                // Logger.Info(speedContainer.SpeedLimit.ToString());
-                // Logger.Info(speedContainer.ResponseLength.ToString());
-                // Logger.Info(speedContainer.RDownloaded.ToString());
-                // Logger.Info(speedContainer.LowSpeedCount.ToString());
-                // Logger.Info(speedContainer.ShouldStop.ToString());
-                // Logger.Info(speedContainer.Downloaded.ToString());
-                // Logger.Info("<<<<<<<<<< speed 打印 结束 =====================");
+                Logger.Info("============== speed 打印 =====================");
+                Logger.Info(speedContainer.SingleSegment.ToString());
+                Logger.Info(speedContainer.NowSpeed.ToString());
+                Logger.Info(speedContainer.SpeedLimit.ToString());
+                Logger.Info(speedContainer.ResponseLength.ToString());
+                Logger.Info(speedContainer.RDownloaded.ToString());
+                Logger.Info(speedContainer.LowSpeedCount.ToString());
+                Logger.Info(speedContainer.ShouldStop.ToString());
+                Logger.Info(speedContainer.Downloaded.ToString());
+                Logger.Info("============= speed 打印 结束 =====================");
 
 
                 // Logger.Info(">>>>>>>>>>> result 打印 =====================");
