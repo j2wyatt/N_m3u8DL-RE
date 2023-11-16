@@ -52,7 +52,7 @@ namespace N_m3u8DL_RE.Column
             return flag ? new Text("-", style).Centered() : new Text(FormatFileSize(speedContainer.NowSpeed) + (speedContainer.LowSpeedCount > 0 ? $"({speedContainer.LowSpeedCount})" : ""), style).Centered();
         }
 
-        public string RenderDemo(ProgressTask task)
+        public static string RenderDemo(ProgressTask task)
         {
             var taskId = task.Id;
             var speedContainer = SpeedContainerDic[taskId];
