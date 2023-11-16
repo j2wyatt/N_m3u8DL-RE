@@ -291,6 +291,9 @@ namespace N_m3u8DL_RE.DownloadManager
                 // var mySpeed = new DownloadSpeedColumn(csp);
                 // var ssp = DownloadSpeedColumn.RenderDemo(task);
                 // Logger.Info(ssp.ToString());
+
+                var flag = task.IsFinished || !task.IsStarted;
+                var ssp = flag ? "-" : FormatFileSize(speedContainer.NowSpeed) + (speedContainer.LowSpeedCount > 0 ? $"({speedContainer.LowSpeedCount})" : "");
                 Logger.Info("test speed finish");
 
 
@@ -737,8 +740,8 @@ namespace N_m3u8DL_RE.DownloadManager
                     {
                         var task = kp.Value;
                         Logger.Info(">>>>>>    第一点");
-                        Logger.Info(task.Value.ToString());
-                        Logger.Info(task.ToString());
+                        // Logger.Info(task.Value.ToString());
+                        // Logger.Info(task.ToString());
                         var result = await DownloadStreamAsync(kp.Key, task, SpeedContainerDic[task.Id]);
                         Results[kp.Key] = result;
                         Logger.Info(">>>>>>>>    第二点");
