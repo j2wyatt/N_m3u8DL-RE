@@ -286,7 +286,7 @@ namespace N_m3u8DL_RE.DownloadManager
                 // 每秒的下载速度
                 Logger.Info("test speed");
                 var mySpeed = new DownloadSpeedColumn();
-                var ssp = mySpeed.RenderDemo(task, speedContainer)
+                var ssp = mySpeed.RenderDemo(task, speedContainer);
                 Logger.Info(ssp.ToString());
                 Logger.Info("test speed finish");
 
