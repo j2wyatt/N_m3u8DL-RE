@@ -346,16 +346,16 @@ namespace N_m3u8DL_RE.DownloadManager
                 // Logger.Info(task.Description.ToString());
                 // Logger.Info("============= task 打印 结束 =====================");
 
-                // Logger.Info("============== speed 打印 =====================");
-                // Logger.Info(speedContainer.SingleSegment.ToString());
-                // Logger.Info(speedContainer.NowSpeed.ToString());
-                // Logger.Info(speedContainer.SpeedLimit.ToString());
-                // Logger.Info(speedContainer.ResponseLength.ToString());
-                // Logger.Info(speedContainer.RDownloaded.ToString());
-                // Logger.Info(speedContainer.LowSpeedCount.ToString());
-                // Logger.Info(speedContainer.ShouldStop.ToString());
-                // Logger.Info(speedContainer.Downloaded.ToString());
-                // Logger.Info("============= speed 打印 结束 =====================");
+                Logger.Info("============== speed 打印 =====================");
+                Logger.Info(speedContainer.SingleSegment.ToString());
+                Logger.Info(speedContainer.NowSpeed.ToString());
+                Logger.Info(speedContainer.SpeedLimit.ToString());
+                Logger.Info(speedContainer.ResponseLength.ToString());
+                Logger.Info(speedContainer.RDownloaded.ToString());
+                Logger.Info(speedContainer.LowSpeedCount.ToString());
+                Logger.Info(speedContainer.ShouldStop.ToString());
+                Logger.Info(speedContainer.Downloaded.ToString());
+                Logger.Info("============= speed 打印 结束 =====================");
 
 
                 // Logger.Info(">>>>>>>>>>> result 打印 =====================");
