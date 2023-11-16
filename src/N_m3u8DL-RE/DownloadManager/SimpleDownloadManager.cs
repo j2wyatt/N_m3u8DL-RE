@@ -302,8 +302,8 @@ namespace N_m3u8DL_RE.DownloadManager
 
 
 
-                Logger.Info("<downInfo>  ssp: " + ssp + "  sst: "
-                    + sst + "   ssg: " + ssg + "   stp: " + stp +"   ssr: " + ssr);
+                // Logger.Info("<downInfo>  ssp: " + ssp + "  sst: "
+                //     + sst + "   ssg: " + ssg + "   stp: " + stp +"   ssr: " + ssr);
 
                 // ========== 我的修改 ===============
 
