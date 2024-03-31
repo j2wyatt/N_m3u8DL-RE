@@ -115,7 +115,7 @@ namespace N_m3u8DL_RE.DownloadManager
         {
             while (!STOP_FLAG && !READ_IFO)
             {
-                await Task.Delay(200);
+                await Task.Delay(5000);
                 if (InfoBuffer.Count < 188 * 5000) continue;
 
                 UInt16 ConvertToUint16(IEnumerable<byte> bytes)
@@ -179,7 +179,7 @@ namespace N_m3u8DL_RE.DownloadManager
         {
             while (!STOP_FLAG)
             {
-                await Task.Delay(1000);
+                await Task.Delay(5000);
                 RecordingDurDic[0]++;
 
                 //检测时长限制
