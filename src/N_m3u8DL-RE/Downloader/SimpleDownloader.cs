@@ -112,7 +112,7 @@ namespace N_m3u8DL_RE.Downloader
                             Logger.DebugMarkUp("Cancel...");
                             break;
                         }
-                        await Task.Delay(500);
+                        await Task.Delay(5000);
                     }
                 });
 
@@ -135,7 +135,7 @@ namespace N_m3u8DL_RE.Downloader
                 Logger.Extra($"Ah oh!{Environment.NewLine}RetryCount => {retryCount}{Environment.NewLine}Exception  => {ex.Message}{Environment.NewLine}Url        => {url}");
                 if (retryCount-- > 0)
                 {
-                    await Task.Delay(1000);
+                    await Task.Delay(5000);
                     goto retry;
                 }
                 else
