@@ -44,7 +44,7 @@ namespace N_m3u8DL_RE.Util
         {
             return await Task.Run(async () =>
             {
-                await Task.Delay(1000);
+                await Task.Delay(5000);
                 return StartPipeMux(binary, pipeNames, outputPath);
             });
         }
