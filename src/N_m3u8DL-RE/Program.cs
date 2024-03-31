@@ -191,7 +191,7 @@ namespace N_m3u8DL_RE
                 Logger.InfoMarkUp(ResString.taskStartAt + option.TaskStartAt);
                 while (option.TaskStartAt > DateTime.Now)
                 {
-                    await Task.Delay(1000);
+                    await Task.Delay(5000);
                 }
             }
 
