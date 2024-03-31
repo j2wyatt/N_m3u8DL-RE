@@ -35,7 +35,7 @@ namespace N_m3u8DL_RE.Util
                 };
                 p.Start();
                 p.WaitForExit();
-                Thread.Sleep(200);
+                Thread.Sleep(5000);
                 return new FileStream(path, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.Read);
             }
         }
