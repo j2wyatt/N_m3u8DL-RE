@@ -76,7 +76,7 @@ namespace N_m3u8DL_RE.Parser.Processor.HLS
                     catch (Exception _ex) when (!_ex.Message.Contains("scheme is not supported."))
                     {
                         Logger.WarnMarkUp($"[grey]{_ex.Message.EscapeMarkup()} retryCount: {retryCount}[/]");
-                        Thread.Sleep(1000);
+                        Thread.Sleep(5000);
                         if (retryCount-- > 0) goto getHttpKey;
                         else throw;
                     }
