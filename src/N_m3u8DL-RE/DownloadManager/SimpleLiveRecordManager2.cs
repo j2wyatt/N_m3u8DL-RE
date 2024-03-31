@@ -363,7 +363,7 @@ namespace N_m3u8DL_RE.DownloadManager
                         var waitCount = 0;
                         while (DownloaderConfig.MyOptions.LiveFixVttByAudio && audioStart == null && waitCount++ < 5)
                         {
-                            await Task.Delay(1000);
+                            await Task.Delay(5000);
                         }
                         var subOffset = audioStart != null ? (long)audioStart.Value.TotalMilliseconds : 0L;
                         var vtt = WebVttSub.Parse(vttContent, subOffset);
@@ -708,7 +708,7 @@ namespace N_m3u8DL_RE.DownloadManager
                     try
                     {
                         //Logger.WarnMarkUp($"wait {waitSec}s");
-                        if (!STOP_FLAG) await Task.Delay(WAIT_SEC * 1000, CancellationTokenSource.Token);
+                        if (!STOP_FLAG) await Task.Delay(WAIT_SEC * 2000, CancellationTokenSource.Token);
                         //刷新列表
                         if (!STOP_FLAG) await StreamExtractor.RefreshPlayListAsync(dic.Keys.ToList());
                     }
@@ -853,7 +853,7 @@ namespace N_m3u8DL_RE.DownloadManager
                 };
                 //开始刷新
                 var producerTask = PlayListProduceAsync(dic);
-                await Task.Delay(200);
+                await Task.Delay(2000);
                 //并发下载
                 await Parallel.ForEachAsync(dic, options, async (kp, _) =>
                 {
