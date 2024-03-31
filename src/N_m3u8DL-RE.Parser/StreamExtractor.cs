@@ -145,7 +145,7 @@ namespace N_m3u8DL_RE.Parser
                     if (retryCount-- > 0)
                     {
                         Logger.WarnMarkUp($"[grey]Refresh Exception: {ex.Message.EscapeMarkup()} retryCount: {retryCount}[/]");
-                        await Task.Delay(1000);
+                        await Task.Delay(5000);
                         goto reGet;
                     }
                     else throw;
